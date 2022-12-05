@@ -1,8 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'dry-system', '0.18.1'
-gem 'rom', '5.2.4'
-gem 'rom-sql', '3.2.0'
+ruby '2.7.1'
+
+gem 'dry-system', '0.21.0'
+gem 'dry-configurable', '~> 0.13.0'
+gem 'zeitwerk'
+gem 'rom'
+gem 'rom-sql'
 gem 'pg'
-gem 'rake'
+
 gem 'dotenv'
+gem 'rake'
+gem 'pry'

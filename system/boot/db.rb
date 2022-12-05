@@ -4,7 +4,7 @@
 
 Projects::Application.boot(:db) do |app|
   init do
-    require "room"
+    require "rom"
     require "rom-sql"
 
     # the pg_timestampz extension will create timestamp with time zone columns in our database
@@ -12,8 +12,7 @@ Projects::Application.boot(:db) do |app|
 
     # this means that times will be stored with time zone information in the database
     # and this means when we retrieve them Ruby wont add the system timezone on the end
-
-    connection = Sequel.connect(ENV['DATABASE_URL']), extensions: %i[pg_timestampz])
+    connection = Sequel.connect(ENV['DATABASE_URL'], extensions: %i[pg_timestamptz])
     register('db.connection', connection)
     register('db.config', ROM::Configuration.new(:sql, connection))
   end

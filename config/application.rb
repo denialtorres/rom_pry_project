@@ -9,6 +9,10 @@ require 'pry'
 require "dry/system/container"
 require "dry/system/loader/autoloading"
 
+# this gem will make it so that the dependency of the database container
+# will be automatically injected into Projects::Repos::User class
+require "dry/auto_inject"
+
 
 module Projects
   class Application < Dry::System::Container
@@ -27,6 +31,8 @@ module Projects
       config.component_dirs.add 'lib'
     end
   end
+
+  Import = Dry::AutoInject(Application)
 end
 # this container handles autoloading by delegating that responsability
 # to another gem called Zeitwerk.

@@ -19,10 +19,19 @@ module Projects
 
       # Add a 'lib' component dir (relative to `root`), containing class definitions
       # that can be auto-registered
+
+      # the component_dirs configuration here would allow us to split our applciation
+      # into smaller components, instear of requiring just lib here
+      # we might split our application up into different components such, core or api
+      # to keep this guide simple, we'll just be loading thins from the lib directory
       config.component_dirs.add 'lib'
     end
   end
 end
+# this container handles autoloading by delegating that responsability
+# to another gem called Zeitwerk.
+# whenever we reference a constan in our application
+# zeitwerk will loat that constant for us
 loader = Zeitwerk::Loader.new
 loader.push_dir Projects::Application.config.root.join("lib").realpath
 loader.setup

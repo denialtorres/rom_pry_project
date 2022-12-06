@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+# this file will load our application's config/application.rb file
+# when this file is loaded all the files in lib will be required
+# this include our new lib/projects/repos/user_repo.rb file
+require_relative '../config/application'
+
+# we call Projects::Application.finalize! here to start our Application
+# and all of its dependencies, this include two system-level dependencies
+# specified in system/boot
+
+Projects::Application.finalize!
+
+require 'irb'
+# once those clases are loaded and the application is finalized
+# bin/console will start an IRB prompt
+IRB.start

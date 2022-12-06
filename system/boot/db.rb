@@ -18,6 +18,12 @@ Projects::Application.boot(:db) do |app|
   end
 
   start do
-    register('db.container', ROM.container(app['db.config']))
+    # this file will now register this relation under lib/projects
+    # and any other ROM thins we add later
+    # this means the user repository will be able to find the User relation
+    config = app['db.config']
+    config.auto_registration(app.root + "lib/projects")
+
+    register('db.container', ROM.container(config))
   end
 end
